@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ChampionChallenges.Infrastructure/1.0.0": {
+        "dependencies": {
+          "ChampionChallenges.Application": "1.0.0",
+          "ChampionChallenges.Domain": "1.0.0"
+        },
+        "runtime": {
+          "ChampionChallenges.Infrastructure.dll": {}
+        }
+      },
+      "ChampionChallenges.Application/1.0.0": {
+        "dependencies": {
+          "ChampionChallenges.Domain": "1.0.0"
+        },
+        "runtime": {
+          "ChampionChallenges.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ChampionChallenges.Domain/1.0.0": {
+        "runtime": {
+          "ChampionChallenges.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ChampionChallenges.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ChampionChallenges.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ChampionChallenges.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

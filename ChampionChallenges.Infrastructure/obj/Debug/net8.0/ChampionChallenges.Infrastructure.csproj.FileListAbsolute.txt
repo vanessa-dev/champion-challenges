@@ -1,0 +1,17 @@
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/bin/Debug/net8.0/ChampionChallenges.Infrastructure.deps.json
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/bin/Debug/net8.0/ChampionChallenges.Infrastructure.dll
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/bin/Debug/net8.0/ChampionChallenges.Infrastructure.pdb
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/bin/Debug/net8.0/ChampionChallenges.Application.dll
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/bin/Debug/net8.0/ChampionChallenges.Domain.dll
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/bin/Debug/net8.0/ChampionChallenges.Domain.pdb
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/bin/Debug/net8.0/ChampionChallenges.Application.pdb
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ChampionChallenges.Infrastructure.csproj.AssemblyReference.cache
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ChampionChallenges.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ChampionChallenges.Infrastructure.AssemblyInfoInputs.cache
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ChampionChallenges.Infrastructure.AssemblyInfo.cs
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ChampionChallenges.Infrastructure.csproj.CoreCompileInputs.cache
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/Champion.77564CE5.Up2Date
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ChampionChallenges.Infrastructure.dll
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/refint/ChampionChallenges.Infrastructure.dll
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ChampionChallenges.Infrastructure.pdb
+/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/Debug/net8.0/ref/ChampionChallenges.Infrastructure.dll
