@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChampionChallenges.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+33e50f435d5a25bd3bb93427f97482b72fe9f207")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChampionChallenges.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChampionChallenges.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
