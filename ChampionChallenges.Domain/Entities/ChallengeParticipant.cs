@@ -1,8 +1,8 @@
 namespace ChampionChallenges.Domain.Entities;
 
-public class ChallengeParticipant
+public class ChallengeParticipant(Guid challengeId, Guid userId)
 {
-    public Guid Id { get; private set; }
-    public Guid ChallengeId { get; private set; }
-    public Guid UserId { get; private set; }
+    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid ChallengeId { get; private set; } = challengeId;
+    public Guid UserId { get; private set; } = userId;
 }

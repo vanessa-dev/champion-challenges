@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj",
+      "projectUniqueName": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj",
       "projectName": "ChampionChallenges.Application",
-      "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj",
+      "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj",
       "packagesPath": "/home/vanessa/.nuget/packages/",
-      "outputPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Application/obj/",
+      "outputPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vanessa/.nuget/NuGet/NuGet.Config"
@@ -51,8 +51,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj": {
-              "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj"
+            "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj": {
+              "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj"
             }
           }
         }

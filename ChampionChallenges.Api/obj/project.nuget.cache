@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2EimaNT2OIU=",
+  "dgSpecHash": "5YHwSQwIr+w=",
   "success": true,
-  "projectFilePath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Api/ChampionChallenges.Api.csproj",
+  "projectFilePath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Api/ChampionChallenges.Api.csproj",
   "expectedPackageFiles": [
     "/home/vanessa/.nuget/packages/microsoft.aspnetcore.openapi/8.0.24/microsoft.aspnetcore.openapi.8.0.24.nupkg.sha512",
     "/home/vanessa/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

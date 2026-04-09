@@ -51,11 +51,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/ChampionChallenges.Infrastructure.csproj",
+      "projectUniqueName": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Infrastructure/ChampionChallenges.Infrastructure.csproj",
       "projectName": "ChampionChallenges.Infrastructure",
-      "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/ChampionChallenges.Infrastructure.csproj",
+      "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Infrastructure/ChampionChallenges.Infrastructure.csproj",
       "packagesPath": "/home/vanessa/.nuget/packages/",
-      "outputPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Infrastructure/obj/",
+      "outputPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vanessa/.nuget/NuGet/NuGet.Config"
@@ -70,11 +70,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj": {
-              "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj"
+            "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj": {
+              "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Application/ChampionChallenges.Application.csproj"
             },
-            "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj": {
-              "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/ChampionChallenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj"
+            "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj": {
+              "projectPath": "/home/vanessa/Imagens/aulas_raissa/aula-ddd/champion-challenges/ChampionChallenges.Domain/ChampionChallenges.Domain.csproj"
             }
           }
         }

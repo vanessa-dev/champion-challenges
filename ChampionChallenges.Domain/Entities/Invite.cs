@@ -2,13 +2,13 @@ using ChampionChallenges.Domain.Enums;
 
 namespace ChampionChallenges.Domain.Entities;
 
-public class Invite
+public class Invite(Guid senderId, Guid recipientId, Guid challengeId, DateTime respondedAt)
 {
-    public Guid Id { get; private set; }
-    public Guid SenderId { get; private set; }
-    public Guid RecipientId { get; private set; }
-    public Guid ChallengeId { get; private set; }
-    public DateTime SentAt { get; private set; }
-    public DateTime RespondedAt { get; private set; }
-    public InviteStatus Status { get; private set; }
+    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid SenderId { get; private set; } = senderId;
+    public Guid RecipientId { get; private set; } = recipientId;
+    public Guid ChallengeId { get; private set; } = challengeId;
+    public DateTime SentAt { get; private set; } = DateTime.UtcNow;
+    public DateTime RespondedAt { get; private set; } = respondedAt;
+    public InviteStatus Status { get; private set; } = InviteStatus.Pending;
 }
