@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/ChampionChallenges.Api.props" />
-</Project>
