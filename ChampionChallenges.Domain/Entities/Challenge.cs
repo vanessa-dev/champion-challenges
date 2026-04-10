@@ -2,7 +2,7 @@ using ChampionChallenges.Domain.Enums;
 
 namespace ChampionChallenges.Domain.Entities;
 
-public class Challenge(string name, string details, ChallengeStatus status, string link, DateTime endDate, Guid userId) : BaseEntity
+public class Challenge(string name, string details, string link, DateTime endDate, Guid userId) : BaseEntity
 {
     public string Name { get; private set; } = name;
     public string Details { get; private set; } = details;
