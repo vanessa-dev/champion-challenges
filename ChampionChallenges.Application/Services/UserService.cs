@@ -20,27 +20,31 @@ public class UserService(IUserRepository userRepository) : IUserService
        return entity.ToResponse();
     }
 
-    public Task<UserResponseDto> Update(CreateUserDto requestDto)
+    public async Task<UserResponseDto> Update(CreateUserDto requestDto)
     {
-        throw new NotImplementedException();
+        var entity = requestDto.ToEntity();
+        await userRepository.Update(entity);
+        return entity.ToResponse();
     }
 
-    public Task Remove(Guid id)
+    public async  Task Remove(Guid id)
     {
-        throw new NotImplementedException();
+       await userRepository.Remove(id);
     }
 
-    public Task<List<UserResponseDto>> GetAll()
+    public async Task<IList<UserResponseDto>> GetAll()
     {
-        throw new NotImplementedException();
+       var users = await userRepository.GetAll();
+       return UserMapper.ToResponse(users);
     }
 
-    public Task<UserResponseDto?> GetById(Guid id)
+    public async Task<UserResponseDto?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        var user = await userRepository.GetById(id);
+        return UserMapper.ToResponse(user);
     }
 
-    public Task<User?> GetByEmail(string email)
+    public Task<UserResponseDto?> GetByEmail(string email)
     {
         throw new NotImplementedException();
     }

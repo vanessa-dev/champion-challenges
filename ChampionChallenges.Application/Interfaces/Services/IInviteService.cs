@@ -4,7 +4,7 @@ using ChampionChallenges.Domain.Entities;
 
 namespace ChampionChallenges.Application.Interfaces.Services;
 
-public interface IInviteService : IBaseService<Invite, SendInviteDto, InviteResponseDto>
+public interface IInviteService 
 {
     
 }

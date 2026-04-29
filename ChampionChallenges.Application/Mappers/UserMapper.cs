@@ -17,6 +17,11 @@ public static class UserMapper
     {
         return new UserResponseDto(user.Id, user.Name, user.Email);
     }
+    
+    public static IList<UserResponseDto> ToResponse(this IList<User> users)
+    {
+       return users.Select(user => user.ToResponse()).ToList();
+    }
 
     public static CreateUserDto ToRequest(this User dto)
     {

@@ -20,7 +20,7 @@ public class ChallengeService : IChallengeService
         throw new NotImplementedException();
     }
 
-    public Task<List<ChallengeResponseDto>> GetAll()
+    public Task<IList<ChallengeResponseDto>> GetAll()
     {
         throw new NotImplementedException();
     }
