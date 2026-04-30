@@ -35,13 +35,13 @@ public class UserService(IUserRepository userRepository) : IUserService
     public async Task<IList<UserResponseDto>> GetAll()
     {
        var users = await userRepository.GetAll();
-       return UserMapper.ToResponse(users);
+       return users.ToResponse();
     }
 
     public async Task<UserResponseDto?> GetById(Guid id)
     {
         var user = await userRepository.GetById(id);
-        return UserMapper.ToResponse(user);
+        return user?.ToResponse();
     }
 
     public Task<UserResponseDto?> GetByEmail(string email)
