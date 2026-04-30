@@ -13,7 +13,7 @@ public class ChallengeConfiguration : IEntityTypeConfiguration<Challenge>
         builder.Property(u => u.Name).IsRequired().HasMaxLength(100);
         builder.Property(u => u.Link).IsRequired();
         builder.Property(u => u.StartDate).IsRequired();
-        builder.Property(u => u.CreatedAt).IsRequired();
-        builder.Property(u => u.UpdatedAt).IsRequired();
+        builder.Property(u => u.CreatedAt).HasColumnName("created_at").IsRequired();
+        builder.Property(u => u.UpdatedAt).HasColumnName("updated_at");
     }
 }
