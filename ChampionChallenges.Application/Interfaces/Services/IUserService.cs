@@ -3,7 +3,13 @@ using ChampionChallenges.Domain.Entities;
 
 namespace ChampionChallenges.Application.Interfaces.Services;
 
-public interface IUserService : IBaseService<User, CreateUserDto, UserResponseDto>
+public interface IUserService 
 {
-   public Task<User?> GetByEmail(string email);
+   public Task<UserResponseDto?> GetByEmail(string email);
+   public Task<UserResponseDto> Add(CreateUserDto entity);
+   public Task<UserResponseDto> Update(CreateUserDto entity);
+   public Task Remove(Guid id);
+    
+   public Task<IList<UserResponseDto>> GetAll();
+   public Task<UserResponseDto?> GetById(Guid id);
 }

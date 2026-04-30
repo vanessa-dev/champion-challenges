@@ -25,7 +25,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
         throw new NotImplementedException();
     }
 
-    public Task<T> GetById(Guid id)
+    public Task<T?> GetById(Guid id)
     {
         throw new NotImplementedException();
     }
