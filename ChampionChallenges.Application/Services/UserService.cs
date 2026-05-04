@@ -15,7 +15,7 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
        //O email precisa ser valido
        var userExists = await userRepository.GetByEmail(requestDto.Email);
        if (userExists != null)
-           throw new Exception("Email already exists");
+           throw new Exception("Erro ao criar Usuario");
        
        var entity = requestDto.ToEntity();
        entity.SetPassword(requestDto.Password, passwordHasher);
