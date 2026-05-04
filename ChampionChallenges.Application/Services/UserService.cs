@@ -25,6 +25,10 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
 
     public async Task<UserResponseDto> Update(CreateUserDto requestDto)
     {
+        var userExists = await userRepository.GetByEmail(requestDto.Email);
+        if (userExists == null)
+            throw new Exception("Erro ao atualizar Usuario");
+        
         var entity = requestDto.ToEntity();
         await userRepository.Update(entity);
         return entity.ToResponse();
