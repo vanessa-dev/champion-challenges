@@ -3,19 +3,22 @@ using ChampionChallenges.Application.Interfaces.Services;
 using ChampionChallenges.Application.Mappers;
 using ChampionChallenges.Domain.Entities;
 using ChampionChallenges.Domain.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace ChampionChallenges.Application.Services;
 
-public class UserService(IUserRepository userRepository) : IUserService
+public class UserService(IUserRepository userRepository, IPasswordHasher<User> passwordHasher) : IUserService
 {
     
     public async Task<UserResponseDto> Add(CreateUserDto requestDto)
     {
        //O email precisa ser valido
-       //O email precisa ser unico
-       //A senha precisa ser criptografada(nao usar bycrypt, identity)
+       var userExists = await userRepository.GetByEmail(requestDto.Email);
+       if (userExists != null)
+           throw new Exception("Email already exists");
        
        var entity = requestDto.ToEntity();
+       entity.SetPassword(requestDto.Password, passwordHasher);
        await userRepository.Add(entity);
        return entity.ToResponse();
     }

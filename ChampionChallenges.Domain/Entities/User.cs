@@ -1,4 +1,5 @@
 using ChampionChallenges.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace ChampionChallenges.Domain.Entities;
 
@@ -9,4 +10,9 @@ public class User(string name, string email, string password, string? photo = nu
     public string Password { get; private set; } = password;
     public string? Photo { get; private set; } = photo;
     public UserStatus UserStatus { get; private set; } = UserStatus.Enabled;
+    
+    public void SetPassword(string password, IPasswordHasher<User> passwordHasher)
+    {
+        Password = passwordHasher.HashPassword(this, password);
+    }
 }

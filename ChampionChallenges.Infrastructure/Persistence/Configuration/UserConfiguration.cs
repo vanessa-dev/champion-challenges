@@ -10,6 +10,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.ToTable("user");
         builder.HasKey(u => u.Id);
+        builder.Property(u => u.Id)
+        .HasColumnType("binary(16)")
+        .HasConversion(
+            v => v.ToByteArray(),
+            v => new Guid(v)
+        );
         builder.Property(u => u.Name).IsRequired().HasMaxLength(100);
         builder.Property(u => u.Email).IsRequired().HasMaxLength(150);
         builder.HasIndex(u => u.Email).IsUnique();
