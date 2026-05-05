@@ -4,7 +4,7 @@ using ChampionChallenges.Infrastructure.Repositories;
 
 namespace ChampionChallenges.Infrastructure.Persistence.Repositories;
 
-public class InviteRepository : BaseRepository<Invite>, IInviteRepository
+public class InviteRepository(AppDbContext context) : BaseRepository<Invite>(context), IInviteRepository
 {
     
 }

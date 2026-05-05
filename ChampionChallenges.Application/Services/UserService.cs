@@ -19,17 +19,23 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
        
        var entity = requestDto.ToEntity();
        entity.SetPassword(requestDto.Password, passwordHasher);
-       await userRepository.Add(entity);
+       await userRepository.Create(entity);
        return entity.ToResponse();
     }
 
     public async Task<UserResponseDto> Update(CreateUserDto requestDto)
     {
-        var userExists = await userRepository.GetByEmail(requestDto.Email);
+        var entity = requestDto.ToEntity();
+        var userExists = await userRepository.GetById(entity.Id);
         if (userExists == null)
             throw new Exception("Erro ao atualizar Usuario");
         
-        var entity = requestDto.ToEntity();
+        var userEmailExists = await userRepository.GetByEmail(requestDto.Email);
+        if (userEmailExists != null)
+            throw new Exception("Erro ao atualizar Usuario");
+        
+        entity.SetPassword(requestDto.Password, passwordHasher);
+        
         await userRepository.Update(entity);
         return entity.ToResponse();
     }

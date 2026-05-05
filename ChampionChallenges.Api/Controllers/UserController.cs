@@ -44,7 +44,7 @@ public class UserController(IUserService userService) : ControllerBase
      }
      
      [HttpPut("{id}")]
-     public async Task<ActionResult<UserResponseDto>> Update([FromBody] CreateUserDto createUserDto)
+     public async Task<ActionResult<UserResponseDto>> Update(Guid id, [FromBody] CreateUserDto createUserDto)
      {
          await userService.Update(createUserDto);
          return NoContent();

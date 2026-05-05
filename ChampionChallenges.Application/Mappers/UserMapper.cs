@@ -18,7 +18,7 @@ public static class UserMapper
         return new UserResponseDto(user.Id, user.Name, user.Email);
     }
     
-    public static IList<UserResponseDto> ToResponse(this IList<User> users)
+    public static IList<UserResponseDto> ToResponse(this IEnumerable<User> users)
     {
        return users.Select(user => user.ToResponse()).ToList();
     }
