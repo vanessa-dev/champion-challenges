@@ -18,8 +18,10 @@ var optionsConfig = builder.Configuration.GetConnectionString("DefaultConnection
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(optionsConfig, ServerVersion.AutoDetect(optionsConfig)));
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IChallengeService, ChallengeService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IChallengeRepository, ChallengeRepository>();
 
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
