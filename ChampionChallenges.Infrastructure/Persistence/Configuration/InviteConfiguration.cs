@@ -10,8 +10,8 @@ public class InviteConfiguration : IEntityTypeConfiguration<Invite>
     {
         builder.ToTable("invite");
         builder.HasKey(u => u.Id);
-        builder.Property(u => u.RecipientId).IsRequired();
-        builder.Property(u => u.ChallengeId).IsRequired();
+        builder.Property(u => u.ChallengedId).IsRequired();
+        builder.Property(u => u.ChallengerId).IsRequired();
         builder.Property(u => u.CreatedAt).HasColumnName("created_at").IsRequired();
         builder.Property(u => u.UpdatedAt).HasColumnName("updated_at");
        

@@ -1,8 +1,8 @@
 namespace ChampionChallenges.Application.DTOs.Invite;
 
-public class SendInviteDto(Guid senderId, Guid recipientId, Guid challengeId) 
+public class SendInviteDto(Guid challengedId, Guid  challengerId) 
 {
-    public Guid SenderId { get; private set; } = senderId;
-    public Guid RecipientId { get; private set; } = recipientId;
-    public Guid ChallengeId { get; private set; } = challengeId;
+    public Guid ChallengedId { get; private set; } = challengedId;
+    public Guid ChallengerId { get; private set; } =  challengerId;
+ 
 }

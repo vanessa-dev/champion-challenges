@@ -21,6 +21,9 @@ public class UserController(IUserService userService) : ControllerBase
      public async Task<ActionResult<UserResponseDto>> GetById(Guid id)
      {
          var user = await userService.GetById(id);
+         if (user == null)
+             return  NotFound();
+         
          return Ok(user);
      }
 
@@ -40,10 +43,10 @@ public class UserController(IUserService userService) : ControllerBase
          return NoContent();
      }
      
-     [HttpPut("{id}")]
-     public async Task<ActionResult<UserResponseDto>> Update([FromBody] CreateUserDto createUserDto)
+     [HttpPut]
+     public async Task<ActionResult<UserResponseDto>> Update([FromBody] UpdateUserDto updateUserDto)
      {
-         await userService.Update(createUserDto);
+         await userService.Update(updateUserDto);
          return NoContent();
      }
 }

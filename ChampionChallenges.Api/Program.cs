@@ -1,5 +1,6 @@
 using ChampionChallenges.Application.Interfaces.Services;
 using ChampionChallenges.Application.Services;
+using ChampionChallenges.Domain.Entities;
 using ChampionChallenges.Domain.Repositories;
 using ChampionChallenges.Infrastructure.Persistence;
 using ChampionChallenges.Infrastructure.Persistence.Repositories;
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(optionsC
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 var app = builder.Build();
 

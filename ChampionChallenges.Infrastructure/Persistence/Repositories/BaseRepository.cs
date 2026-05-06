@@ -1,32 +1,46 @@
 using ChampionChallenges.Domain.Entities;
 using ChampionChallenges.Domain.Repositories;
+using ChampionChallenges.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChampionChallenges.Infrastructure.Repositories;
 
-public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+public class BaseRepository<T>(AppDbContext context) : IBaseRepository<T> where T : BaseEntity
 {
-    public Task Add(T entity)
+    public virtual async Task<T> Create(T obj)
     {
-        throw new NotImplementedException();
+        context.Add(obj);
+        await context.SaveChangesAsync();
+
+        return obj;
     }
 
-    public Task Remove(Guid id)
+    public virtual async Task<T> Update(T obj)
     {
-        throw new NotImplementedException();
+        context.Entry(obj).State = EntityState.Modified;
+        await context.SaveChangesAsync();
+        
+        return obj;
     }
 
-    public Task Update(T entity)
+    public virtual async Task Remove(Guid id)
     {
-        throw new NotImplementedException();
+        var obj = await GetById(id);
+
+        if (obj != null)
+        {
+            context.Remove(obj);
+            await context.SaveChangesAsync();
+        }
     }
 
-    public Task<List<T>> GetAll()
+    public virtual async Task<T?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        return await context.Set<T>().AsNoTracking().Where(entity => entity.Id == id).FirstOrDefaultAsync();
     }
 
-    public Task<T?> GetById(Guid id)
+    public virtual async Task<IEnumerable<T>> GetAll()
     {
-        throw new NotImplementedException();
+        return await context.Set<T>().AsNoTracking().ToListAsync();
     }
 }

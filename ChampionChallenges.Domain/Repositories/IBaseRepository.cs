@@ -4,9 +4,9 @@ namespace ChampionChallenges.Domain.Repositories;
 
 public interface IBaseRepository<T> where T : BaseEntity
 {
-    public Task Add(T entity);
-    public Task Remove(Guid id);
-    public Task Update(T entity);
-    public Task<List<T>> GetAll();
-    public Task<T?> GetById(Guid id);
+    Task<T> Create(T obj);
+    Task<T> Update(T obj);
+    Task Remove(Guid id);
+    Task<T?> GetById(Guid id);
+    Task<IEnumerable<T>> GetAll();
 }
