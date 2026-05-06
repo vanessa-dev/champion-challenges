@@ -8,7 +8,7 @@ public static class InviteMapper
     //Converter para entidade
     public static Invite ToEntity(this SendInviteDto dto)
     {
-        return new Invite(dto.ChallengedId, dto.ChallengerId);
+        return new Invite(dto.ChallengerId, dto.ChallengedId);
     }
     
     //Converter para DTO
