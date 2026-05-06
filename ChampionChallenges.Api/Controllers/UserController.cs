@@ -43,10 +43,10 @@ public class UserController(IUserService userService) : ControllerBase
          return NoContent();
      }
      
-     [HttpPut("{id}")]
-     public async Task<ActionResult<UserResponseDto>> Update(Guid id, [FromBody] CreateUserDto createUserDto)
+     [HttpPut]
+     public async Task<ActionResult<UserResponseDto>> Update([FromBody] UpdateUserDto updateUserDto)
      {
-         await userService.Update(createUserDto);
+         await userService.Update(updateUserDto);
          return NoContent();
      }
 }

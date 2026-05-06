@@ -23,21 +23,22 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
        return entity.ToResponse();
     }
 
-    public async Task<UserResponseDto> Update(CreateUserDto requestDto)
+    public async Task<UserResponseDto> Update(UpdateUserDto requestDto)
     {
-        var entity = requestDto.ToEntity();
-        var userExists = await userRepository.GetById(entity.Id);
-        if (userExists == null)
+        var user = await userRepository.GetById(requestDto.Id);
+        if (user == null)
             throw new Exception("Erro ao atualizar Usuario");
         
         var userEmailExists = await userRepository.GetByEmail(requestDto.Email);
         if (userEmailExists != null)
             throw new Exception("Erro ao atualizar Usuario");
         
-        entity.SetPassword(requestDto.Password, passwordHasher);
+        user.SetEmail(requestDto.Email);
+        user.SetName(requestDto.Name);
+        user.SetPassword(requestDto.Password, passwordHasher);
         
-        await userRepository.Update(entity);
-        return entity.ToResponse();
+        await userRepository.Update(user);
+        return user.ToResponse();
     }
 
     public async  Task Remove(Guid id)
@@ -57,8 +58,9 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
         return user?.ToResponse();
     }
 
-    public Task<UserResponseDto?> GetByEmail(string email)
+    public async Task<UserResponseDto?> GetByEmail(string email)
     {
-        throw new NotImplementedException();
+        var user = await userRepository.GetByEmail(email);
+        return user?.ToResponse();
     }
 }

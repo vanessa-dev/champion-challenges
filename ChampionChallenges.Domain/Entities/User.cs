@@ -15,4 +15,8 @@ public class User(string name, string email, string password, string? photo = nu
     {
         Password = passwordHasher.HashPassword(this, password);
     }
+    
+    public void SetName(string name) => Name = name;
+    public void SetEmail(string email) => Email = email;
+    
 }
