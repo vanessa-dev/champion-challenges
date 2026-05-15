@@ -1,13 +1,17 @@
 using ChampionChallenges.Application.DTOs.Challenge;
 using ChampionChallenges.Application.Interfaces.Services;
+using ChampionChallenges.Application.Mappers;
+using ChampionChallenges.Domain.Repositories;
 
 namespace ChampionChallenges.Application.Services;
 
-public class ChallengeService : IChallengeService
+public class ChallengeService(IChallengeRepository challengeRepository) : IChallengeService
 {
-    public Task<ChallengeResponseDto> Add(CreateChallengeDto entity)
+    public  async Task<ChallengeResponseDto> Add(CreateChallengeDto entity)
     {
-        throw new NotImplementedException();
+        var challenge = entity.ToEntity();
+        await challengeRepository.Create(challenge);
+        return challenge.ToResponse();
     }
 
     public Task<ChallengeResponseDto> Update(CreateChallengeDto entity)
@@ -25,8 +29,9 @@ public class ChallengeService : IChallengeService
         throw new NotImplementedException();
     }
 
-    public Task<ChallengeResponseDto?> GetById(Guid id)
+    public async Task<ChallengeResponseDto?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        var challenge = await challengeRepository.GetById(id);
+        return challenge?.ToResponse();
     }
 }

@@ -30,8 +30,7 @@ public class UserController(IUserService userService) : ControllerBase
      [HttpPost]
      public async Task<ActionResult<UserResponseDto>> Add([FromBody] CreateUserDto createUserDto)
      {
-         await userService.Add(createUserDto);
-         var user = UserMapper.ToEntity(createUserDto);
+         var user = await userService.Add(createUserDto);
          return CreatedAtAction(nameof(GetById), new {id = user.Id}, createUserDto);
      }
 
