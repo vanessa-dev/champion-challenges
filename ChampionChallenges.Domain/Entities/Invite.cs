@@ -18,5 +18,9 @@ public class Invite(Guid challengerId, Guid challengedId) : BaseEntity
 
     public void Decline() =>
         (Status, RespondedAt) = (InviteStatus.Rejected, DateTime.UtcNow);
-    
+
+    public override bool Validate()
+    {
+        throw new NotImplementedException();
+    }
 }
