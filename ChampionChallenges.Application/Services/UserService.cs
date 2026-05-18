@@ -12,13 +12,13 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
     
     public async Task<UserResponseDto> Add(CreateUserDto requestDto)
     {
-       //O email precisa ser valido
        var userExists = await userRepository.GetByEmail(requestDto.Email);
        if (userExists != null)
-           throw new Exception("Erro ao criar Usuario");
+           throw new Exception("Unable to create user.");
        
        var entity = requestDto.ToEntity();
        entity.SetPassword(requestDto.Password, passwordHasher);
+       entity.Validate();
        await userRepository.Create(entity);
        return entity.ToResponse();
     }
@@ -27,11 +27,11 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
     {
         var user = await userRepository.GetById(requestDto.Id);
         if (user == null)
-            throw new Exception("Erro ao atualizar Usuario");
+            throw new Exception("Unable to update the user.");
         
         var userEmailExists = await userRepository.GetByEmail(requestDto.Email);
         if (userEmailExists != null)
-            throw new Exception("Erro ao atualizar Usuario");
+            throw new Exception("Unable to update the user.");
         
         user.SetEmail(requestDto.Email);
         user.SetName(requestDto.Name);

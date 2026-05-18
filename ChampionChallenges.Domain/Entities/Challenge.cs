@@ -16,6 +16,10 @@ public class Challenge(string name, string details, string link, Guid userId, Da
     public ICollection<Invite> Invites { get; private set; } = [];
 
     public Invite Invite(Guid challengedId) => new (Id, challengedId);
-    
-    
+
+
+    public override bool Validate()
+    {
+        throw new NotImplementedException();
+    }
 }

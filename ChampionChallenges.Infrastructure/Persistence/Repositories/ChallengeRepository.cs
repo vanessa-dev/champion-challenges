@@ -8,6 +8,7 @@ public class ChallengeRepository(AppDbContext context) : BaseRepository<Challeng
 {
 
     // Detalhe completo — desafiante + todos os convites com os desafiados - busca
+    
     public Task<Challenge?> GetByIdWithDetailsAsync(Guid id)
     {
         throw new NotImplementedException();
