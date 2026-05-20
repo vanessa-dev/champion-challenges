@@ -12,6 +12,7 @@ public class User(string name, string email, string password, string? photo = nu
     public string Password { get; private set; } = password;
     public string? Photo { get; private set; } = photo;
     public UserStatus UserStatus { get; private set; } = UserStatus.Enabled;
+    public UserRolePermission RolePermission { get; set; } 
     private readonly List<string> _errors = new List<string>();
     
     public void SetPassword(string password, IPasswordHasher<User> passwordHasher)

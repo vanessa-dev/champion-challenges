@@ -23,5 +23,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.UserStatus).HasColumnName("status");
         builder.Property(u => u.CreatedAt).HasColumnName("created_at").IsRequired();
         builder.Property(u => u.UpdatedAt).HasColumnName("updated_at");
+        builder.Property(u => u.RolePermission).HasColumnName("role_permission");
     }
 }
