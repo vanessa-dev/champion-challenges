@@ -25,6 +25,6 @@ public static class UserMapper
 
     public static CreateUserDto ToRequest(this User dto)
     {
-        return new CreateUserDto(dto.Name, dto.Email, dto.Password);
+        return new CreateUserDto(dto.Name, dto.Email, dto.Password, dto.RolePermission, dto.UserStatus);
     }
 }

@@ -35,7 +35,7 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
         
         user.SetEmail(requestDto.Email);
         user.SetName(requestDto.Name);
-        user.SetPassword(requestDto.Password, passwordHasher);
+        user.SetRolePermission(requestDto.Permission);
         
         await userRepository.Update(user);
         return user.ToResponse();
