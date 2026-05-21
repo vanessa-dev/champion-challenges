@@ -15,12 +15,13 @@ public class User(string name, string email, string password, string? photo = nu
     public UserRolePermission RolePermission { get; set; } 
     private readonly List<string> _errors = new List<string>();
     
-    public void SetPassword(string password, IPasswordHasher<User> passwordHasher)
+    public void ChangePassword(IPasswordHasher<User> passwordHasher)
     {
-        Password = passwordHasher.HashPassword(this, password);
+        Password = passwordHasher.HashPassword(this, Password);
     }
     
     public void SetName(string name) => Name = name;
+    public void SetPassword(string password) => Password = password;
     public void SetEmail(string email) => Email = email;
     public void SetRolePermission(UserRolePermission permission) => RolePermission = permission;
     
