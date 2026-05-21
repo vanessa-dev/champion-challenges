@@ -21,10 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\ChampionChallenges.Application\ChampionChallenges.Application.csproj" />
       <ProjectReference Include="..\ChampionChallenges.Domain\ChampionChallenges.Domain.csproj" />
     </ItemGroup>

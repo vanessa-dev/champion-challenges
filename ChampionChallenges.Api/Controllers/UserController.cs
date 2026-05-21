@@ -48,4 +48,11 @@ public class UserController(IUserService userService) : ControllerBase
          await userService.Update(updateUserDto);
          return NoContent();
      }
+     
+     [HttpPut("{userId}")]
+     public async Task<ActionResult<UserResponseDto>> UpdatePassword(Guid userId, [FromBody] UpdatePasswordDto updateUserDto)
+     {
+         await userService.UpdatePassword(userId, updateUserDto);
+         return NoContent();
+     }
 }

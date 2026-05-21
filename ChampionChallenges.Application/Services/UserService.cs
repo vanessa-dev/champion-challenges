@@ -40,6 +40,27 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
         await userRepository.Update(user);
         return user.ToResponse();
     }
+    
+    public async Task<UserResponseDto> UpdatePassword(Guid userId, UpdatePasswordDto requestDto)
+    {
+        var user = await userRepository.GetById(userId);
+        if (user == null)
+            throw new Exception("Unable to update the user.");
+        
+        var passwordCheck = passwordHasher.VerifyHashedPassword(
+            user, 
+            requestDto.CurrentPassword, 
+            requestDto.NewPassword
+        );
+        
+        if(passwordCheck == PasswordVerificationResult.Failed)
+            throw new Exception("Current password is invalid.");
+            
+        
+        user.SetPassword(requestDto.NewPassword, passwordHasher);
+        await userRepository.Update(user);
+        return user.ToResponse();
+    }
 
     public async  Task Remove(Guid id)
     {
