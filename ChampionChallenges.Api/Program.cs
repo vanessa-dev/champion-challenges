@@ -1,10 +1,13 @@
 using ChampionChallenges.Api.Filters;
+using ChampionChallenges.Application.DTOs.User;
 using ChampionChallenges.Application.Interfaces.Services;
 using ChampionChallenges.Application.Services;
 using ChampionChallenges.Domain.Entities;
 using ChampionChallenges.Domain.Repositories;
 using ChampionChallenges.Infrastructure.Persistence;
 using ChampionChallenges.Infrastructure.Persistence.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +31,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IChallengeRepository, ChallengeRepository>();
 
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-
+builder.Services.AddFluentValidationAutoValidation()
+    .AddValidatorsFromAssemblyContaining<UpdatePasswordDto>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
