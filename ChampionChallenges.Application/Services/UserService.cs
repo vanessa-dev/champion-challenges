@@ -75,6 +75,26 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
        return users.ToResponse();
     }
 
+    public async Task<PagedResult<UserShortResponseDto>> GetAllPaged(UserFilterRequestDto search)
+    {
+        var page = search.Page < 1 ? 1 : search.Page;
+        var pageSize = search.PageSize < 1 ? 20 : search.PageSize;
+
+        var pagedUsers = await userRepository.GetPaged(pageSize, page, search.Name, search.Email,
+            search.RolePermission, search.Status
+        );
+        
+        var items = pagedUsers.Items.ToShortResponse();
+
+        return new PagedResult<UserShortResponseDto>
+        {
+            Items = items,
+            TotalItems = pagedUsers.TotalItems,
+            Page = page,
+            PageSize = pageSize
+        };
+    }
+
     public async Task<UserResponseDto?> GetById(Guid id)
     {
         var user = await userRepository.GetById(id);

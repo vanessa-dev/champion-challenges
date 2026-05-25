@@ -2,14 +2,16 @@ using ChampionChallenges.Domain.Enums;
 
 namespace ChampionChallenges.Application.DTOs.User;
 
-public class UserResponseDto(Guid id, string name, string email,UserRolePermission rolePermission, UserStatus status, DateTime createdAt, DateTime updatedAt)
+public class UserShortResponseDto(
+    Guid id,
+    string name,
+    string email,
+    UserRolePermission rolePermission,
+    UserStatus status)
 {
-    public Guid Id { get; set; } = id;
+    public Guid Id { get; private set; } = id;
     public string Name { get; private set; } = name;
     public string Email { get; private set; } = email;
     public UserRolePermission RolePermission { get; private set; } = rolePermission;
     public UserStatus Status { get; private set; } = status;
-    public DateTime CreatedAt { get; private set; } = createdAt;
-    public DateTime UpdatedAt { get; private set; } = updatedAt;
-    
 }

@@ -10,10 +10,20 @@ namespace ChampionChallenges.Api.Controllers;
 [Route("api/user")]
 public class UserController(IUserService userService) : ControllerBase
 {
-     [HttpGet]
-     public async Task<ActionResult<IList<UserResponseDto>>> GetAll()
-     {
+
+    //TODO: Decidir nomenclatura depois e se vai existir tanto o getAll tanto listUser(paginacao),
+    // ignore os nomes por enquanto.
+    [HttpGet]
+    public async Task<ActionResult<IList<UserResponseDto>>> GetAll()
+    {
         var user =  await userService.GetAll();
+        return Ok(user);
+    }
+    
+     [HttpGet("paged")]
+     public async Task<ActionResult<PagedResult<UserShortResponseDto>>> List([FromQuery] UserFilterRequestDto search)
+     {
+        var user =  await userService.GetAllPaged(search);
         return Ok(user);
      }
 

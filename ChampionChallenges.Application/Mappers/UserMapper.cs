@@ -15,12 +15,22 @@ public static class UserMapper
     //Converter para DTO
     public static UserResponseDto ToResponse(this User user)
     {
-        return new UserResponseDto(user.Id, user.Name, user.Email);
+        return new UserResponseDto(user.Id, user.Name, user.Email, user.RolePermission, user.UserStatus, user.CreatedAt, user.UpdatedAt);
+    }
+
+    public static UserShortResponseDto ToShortResponse(this User user)
+    {
+        return new UserShortResponseDto(user.Id, user.Name, user.Email, user.RolePermission, user.UserStatus);
     }
     
     public static IList<UserResponseDto> ToResponse(this IEnumerable<User> users)
     {
        return users.Select(user => user.ToResponse()).ToList();
+    }
+
+    public static IReadOnlyList<UserShortResponseDto> ToShortResponse(this IEnumerable<User> users)
+    {
+        return users.Select(user => user.ToShortResponse()).ToList();
     }
 
     public static CreateUserDto ToRequest(this User dto)

@@ -12,5 +12,6 @@ public interface IUserService
    public Task Remove(Guid id);
     
    public Task<IList<UserResponseDto>> GetAll();
+   public Task<PagedResult<UserShortResponseDto>> GetAllPaged(UserFilterRequestDto search);
    public Task<UserResponseDto?> GetById(Guid id);
 }
