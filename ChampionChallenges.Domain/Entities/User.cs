@@ -18,12 +18,47 @@ public class User(string name, string email, string password, string? photo = nu
     public void ChangePassword(IPasswordHasher<User> passwordHasher)
     {
         Password = passwordHasher.HashPassword(this, Password);
+        SetUpdatedAt();
     }
     
-    public void SetName(string name) => Name = name;
     public void SetPassword(string password) => Password = password;
-    public void SetEmail(string email) => Email = email;
-    public void SetRolePermission(UserRolePermission permission) => RolePermission = permission;
+    
+    public void Disable()
+    {
+        if (UserStatus == UserStatus.Disabled)
+            throw new DomainException("User is already disabled");
+
+        UserStatus = UserStatus.Disabled;
+        SetUpdatedAt();
+    }
+    
+    public void Enable()
+    {
+        if (UserStatus == UserStatus.Enabled)
+            return;
+
+        UserStatus = UserStatus.Enabled;
+        SetUpdatedAt();
+    }
+
+   
+    public void ChangePassword(string newHash)
+    {
+        Password = newHash;
+        SetUpdatedAt();
+    }
+    
+    public void UpdateData(
+        string name,
+        string email,
+        UserRolePermission rolePermission)
+    {
+        Name = name;
+        Email = email;
+        RolePermission = rolePermission;
+
+        SetUpdatedAt();
+    }
     
     public override bool Validate()
     {
