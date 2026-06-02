@@ -1,27 +1,24 @@
 using ChampionChallenges.Domain.Enums;
 using ChampionChallenges.Domain.Exceptions;
 using ChampionChallenges.Domain.Validators;
-using Microsoft.AspNetCore.Identity;
 
 namespace ChampionChallenges.Domain.Entities;
 
-public class User(string name, string email, string password, string? photo = null) : BaseEntity
+public class User(
+    string name,
+    string email,
+    string password,
+    UserRolePermission rolePermission,
+    UserStatus userStatus = UserStatus.Enabled,
+    string? photo = null) : BaseEntity
 {
     public string Name { get; private set; } = name;
     public string Email { get; private set; } = email;
     public string Password { get; private set; } = password;
     public string? Photo { get; private set; } = photo;
-    public UserStatus UserStatus { get; private set; } = UserStatus.Enabled;
-    public UserRolePermission RolePermission { get; set; } 
+    public UserStatus UserStatus { get; private set; } = userStatus;
+    public UserRolePermission RolePermission { get; private set; } = rolePermission;
     private readonly List<string> _errors = new List<string>();
-    
-    public void ChangePassword(IPasswordHasher<User> passwordHasher)
-    {
-        Password = passwordHasher.HashPassword(this, Password);
-        SetUpdatedAt();
-    }
-    
-    public void SetPassword(string password) => Password = password;
     
     public void Disable()
     {

@@ -17,9 +17,8 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
            throw new Exception("Unable to create user.");
        
        var entity = requestDto.ToEntity();
-       entity.SetPassword(requestDto.Password);
        entity.Validate();
-       entity.ChangePassword(passwordHasher);
+       entity.ChangePassword(passwordHasher.HashPassword(entity, requestDto.Password));
        
        await userRepository.Create(entity);
        return entity.ToResponse();
@@ -49,15 +48,14 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
         
         var passwordCheck = passwordHasher.VerifyHashedPassword(
             user, 
-            requestDto.CurrentPassword, 
-            requestDto.NewPassword
+            user.Password,
+            requestDto.CurrentPassword
         );
         
         if(passwordCheck == PasswordVerificationResult.Failed)
             throw new Exception("Current password is invalid.");
         
-        user.SetPassword(requestDto.CurrentPassword);
-        user.ChangePassword(passwordHasher);
+        user.ChangePassword(passwordHasher.HashPassword(user, requestDto.NewPassword));
         await userRepository.Update(user);
         return user.ToResponse();
     }

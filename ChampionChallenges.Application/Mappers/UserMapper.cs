@@ -9,7 +9,13 @@ public static class UserMapper
     //Converter para entidade
     public static User ToEntity(this CreateUserDto dto)
     {
-        return new User(dto.Name, dto.Email, dto.Password);
+        return new User(
+            dto.Name,
+            dto.Email,
+            dto.Password,
+            dto.RolePermission,
+            dto.Status
+        );
     }
     
     //Converter para DTO

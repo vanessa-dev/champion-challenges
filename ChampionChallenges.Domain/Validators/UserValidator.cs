@@ -27,6 +27,10 @@ public class UserValidator : AbstractValidator<User>
             .Matches(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
             .WithMessage("email is invalid");
 
+        RuleFor(entity => entity.RolePermission)
+            .IsInEnum()
+            .WithMessage("role permission is invalid");
+
         RuleFor(entity => entity.Password)
             .NotEmpty()
             .WithMessage("password is required")
@@ -36,6 +40,7 @@ public class UserValidator : AbstractValidator<User>
             .WithMessage("min. 6 characters");
 
         RuleFor(entity => entity.UserStatus)
-            .IsInEnum();
+            .IsInEnum()
+            .WithMessage("user status is invalid");
     }
 }
