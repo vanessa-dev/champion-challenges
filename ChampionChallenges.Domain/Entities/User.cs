@@ -23,7 +23,7 @@ public class User(
     public void Disable()
     {
         if (UserStatus == UserStatus.Disabled)
-            throw new DomainException("User is already disabled");
+            return;
 
         UserStatus = UserStatus.Disabled;
         SetUpdatedAt();
@@ -41,6 +41,8 @@ public class User(
    
     public void ChangePassword(string newHash)
     {
+        //Todo: Adicionar Validacao para checar se o usuario tem permissao
+        // para mudar a senha.
         Password = newHash;
         SetUpdatedAt();
     }
