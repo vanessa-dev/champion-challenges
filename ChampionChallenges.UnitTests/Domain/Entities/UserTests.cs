@@ -1,5 +1,6 @@
 using ChampionChallenges.Domain.Entities;
 using ChampionChallenges.Domain.Enums;
+using ChampionChallenges.Domain.Exceptions;
 using FluentAssertions;
 
 namespace ChampionChallenges.UnitTests.Domain.Entities;
@@ -119,5 +120,23 @@ public class UserTests
         user.Name.Should().Be(newName);
         user.Email.Should().Be(newEmail);
         user.RolePermission.Should().Be(newRole);
+    }
+    
+    [Fact]
+    public void GivenInvalidParameters_WhenCreatingUser_ThenShouldThrownAnException()
+    {
+        //Arrange
+        var name = "John Doe";
+        var email = "john.doe.teste";
+        var password = "123456";
+        var rolePermission = UserRolePermission.Operator;
+        var status = UserStatus.Disabled;
+        var user = new User(name, email, password, rolePermission, status);
+        
+        //Act 
+        var act = () => user.Validate();
+        
+        //Assert
+        act.Should().Throw<DomainException>().WithMessage("Invalid Fields");
     }
 }
