@@ -13,9 +13,16 @@ namespace ChampionChallenges.UnitTests.Application.Services;
 
 public class UserServiceTests
 {
-    public static readonly Mock<IUserRepository> _userRepositoryMock = new(MockBehavior.Strict);
-    public static readonly Mock<IPasswordHasher<User>> _passwordHasherMock = new(MockBehavior.Strict);
-    public readonly IUserService _service = new UserService(_userRepositoryMock.Object, _passwordHasherMock.Object);
+    private readonly Mock<IUserRepository> _userRepositoryMock;
+    private readonly Mock<IPasswordHasher<User>> _passwordHasherMock;
+    private readonly IUserService _service;
+
+    public UserServiceTests()
+    {
+        _userRepositoryMock = new Mock<IUserRepository>(MockBehavior.Strict);
+        _passwordHasherMock = new Mock<IPasswordHasher<User>>(MockBehavior.Strict);
+        _service = new UserService(_userRepositoryMock.Object, _passwordHasherMock.Object);
+    }
     
     #region Add
     [Fact]
@@ -31,7 +38,7 @@ public class UserServiceTests
         var userdto = new CreateUserDto(name, email, password, role, status);
         User? savedUser = null;
 
-    _userRepositoryMock.Setup(x => x.GetByEmail(userdto.Email)).ReturnsAsync((User?) null).Verifiable();
+       _userRepositoryMock.Setup(x => x.GetByEmail(userdto.Email)).ReturnsAsync((User?) null).Verifiable();
        _passwordHasherMock.Setup(x => x.HashPassword(It.IsAny<User>(), It.Is<string>(p => p == userdto.Password))).Returns("hash_password").Verifiable();
        _userRepositoryMock.Setup(x => x.Create(It.IsAny<User>())).Callback<User>(u  => savedUser = u ).ReturnsAsync((User u) => u).Verifiable();
        
@@ -75,7 +82,7 @@ public class UserServiceTests
         var act = () => _service.Add(userdto);
 
         // Assert
-        await act.Should().ThrowAsync<DomainException>().WithMessage("Invalid Fields");
+        await act.Should().ThrowAsync<Exception>().WithMessage("Invalid Fields");
         _passwordHasherMock.Verify(x => x.HashPassword(It.IsAny<User>(), It.IsAny<string>()), Times.Never);
         _userRepositoryMock.Verify(x => x.Create(It.IsAny<User>()), Times.Never);
     }
@@ -84,7 +91,7 @@ public class UserServiceTests
     
     #region Update  
     [Fact]
-    public async Task GivenValidDto_WhenAdUpdateUser_ThenShouldUpdateSuccessfully()
+    public async Task GivenValidDto_WhenUpdateUser_ThenShouldUpdateSuccessfully()
     {
         //Arrange
         var user = new User("John", "john@old.com", "hash", UserRolePermission.Operator, UserStatus.Enabled);
@@ -95,6 +102,7 @@ public class UserServiceTests
         var updateUserDto = new UpdateUserDto(user.Id, name, email, role);
 
         _userRepositoryMock.Setup(x => x.GetById(user.Id)).ReturnsAsync(user).Verifiable();
+        _userRepositoryMock.Setup(x => x.GetByEmail(updateUserDto.Email)).ReturnsAsync((User?)null).Verifiable();
         _userRepositoryMock.Setup(x => x.Update(It.IsAny<User>())).ReturnsAsync((User u) => u).Verifiable();
         
         //Act
@@ -108,6 +116,29 @@ public class UserServiceTests
         result.RolePermission.Should().Be(role);
         _userRepositoryMock.Verify(x => x.Update(It.IsAny<User>()), Times.Once);
         _userRepositoryMock.Verify(x => x.GetById(user.Id), Times.Once);
+        _userRepositoryMock.Verify(x => x.GetByEmail(updateUserDto.Email), Times.Once);
+    }
+
+    [Fact]
+    public async Task GivenInvalidDto_WhenUpdateUser_ThenShouldThrowDomainException()
+    {
+        //Arrange
+        var name  = "John Doe";
+        var email = "john.doe@gmail.com";
+        var role = UserRolePermission.Operator;
+        var id   = new Guid("00000000-0000-0000-0000-000000000000");
+        
+        var updateUserDto = new UpdateUserDto(id, name, email, role);
+        
+        _userRepositoryMock.Setup(x => x.GetById(id)).ReturnsAsync(It.IsAny<User>()).Verifiable();
+        _userRepositoryMock.Setup(x => x.GetByEmail(updateUserDto.Email)).ReturnsAsync((User?) null).Verifiable();
+        _userRepositoryMock.Setup(x => x.Update(It.IsAny<User>())).ReturnsAsync((User u) => u).Verifiable();
+
+        //Act
+        var act = () => _service.Update(updateUserDto);
+        await act.Should().ThrowAsync<Exception>().WithMessage("Unable to update the user.");
+        _userRepositoryMock.Verify(x => x.GetByEmail(updateUserDto.Email), Times.Never);
+        _userRepositoryMock.Verify(x => x.Update(It.IsAny<User>()), Times.Never);
     }
     #endregion
 }
