@@ -30,8 +30,7 @@ public class UserService(IUserRepository userRepository, IPasswordHasher<User> p
         if (user == null)
             throw new Exception("Unable to update the user.");
         
-        var userEmailExists = await userRepository.GetByEmail(requestDto.Email);
-        if (userEmailExists != null)
+        if (user.Email == requestDto.Email)
             throw new Exception("Unable to update the user.");
         
         user.UpdateData(requestDto.Name, requestDto.Email, requestDto.Permission);
