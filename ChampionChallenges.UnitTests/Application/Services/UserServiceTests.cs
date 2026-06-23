@@ -155,6 +155,7 @@ public class UserServiceTests
     }
     
     #endregion
+    
     #region Delete
 
     [Fact]
@@ -171,4 +172,36 @@ public class UserServiceTests
         _userRepositoryMock.Verify(x => x.Remove(user.Id), Times.Once);
     }
     #endregion
+    
+    #region GetAll
+    [Fact]
+    public async Task GivenUsers_WhenGetAll_ThenShouldReturnAllUsers()
+    {
+        //Arrange
+        var users = new List<User>
+        {
+            new("John", "john@site.com", "hash1", UserRolePermission.Operator, UserStatus.Enabled),
+            new("Jane", "jane@site.com", "hash2", UserRolePermission.Admin, UserStatus.Disabled)
+        };
+
+        _userRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(users).Verifiable();
+
+        //Act
+        var result = await _service.GetAll();
+
+        //Assert
+        result.Should().HaveCount(2);
+        result[0].Name.Should().Be("John");
+        result[0].Email.Should().Be("john@site.com");
+        result[0].RolePermission.Should().Be(UserRolePermission.Operator);
+        result[0].Status.Should().Be(UserStatus.Enabled);
+        result[1].Name.Should().Be("Jane");
+        result[1].Email.Should().Be("jane@site.com");
+        result[1].RolePermission.Should().Be(UserRolePermission.Admin);
+        result[1].Status.Should().Be(UserStatus.Disabled);
+        _userRepositoryMock.Verify(x => x.GetAll(), Times.Once);
+    }
+    #endregion
+    
+    
 }
