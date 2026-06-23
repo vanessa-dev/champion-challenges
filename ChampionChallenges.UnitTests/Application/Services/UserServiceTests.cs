@@ -141,4 +141,34 @@ public class UserServiceTests
         _userRepositoryMock.Verify(x => x.Update(It.IsAny<User>()), Times.Never);
     }
     #endregion
+    
+    #region UpdatePassword
+
+    [Fact]
+    public async Task GivenValidDto_WhenUpdatePassword_ThenShouldUpdateSuccessfully()
+    {   
+        //Arrange
+        
+        //Act
+        
+        //Assert
+    }
+    
+    #endregion
+    #region Delete
+
+    [Fact]
+    public async Task GiveValidUserId_WhenDeleteUser_ThenShouldDeleteSuccessfully()
+    {
+        //Arrange
+        var user = new User("John", "john@old.com", "hash", UserRolePermission.Operator, UserStatus.Enabled);
+        _userRepositoryMock.Setup(x => x.Remove(user.Id)).Returns(Task.CompletedTask).Verifiable();
+        
+        //Act
+        await _service.Remove(user.Id);
+
+        //Assert
+        _userRepositoryMock.Verify(x => x.Remove(user.Id), Times.Once);
+    }
+    #endregion
 }
