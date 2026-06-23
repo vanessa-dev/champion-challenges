@@ -203,5 +203,49 @@ public class UserServiceTests
     }
     #endregion
     
+    #region GetByID
+
+    [Fact]
+    public async Task GivenValidId_WhenGetByID_ThenShouldReturnUser()
+    {
+        //Arrange
+       
+        var user = new User("John", "john@old.com", "hash", UserRolePermission.Operator, UserStatus.Enabled);
+        _userRepositoryMock.Setup(x => x.GetById(user.Id)).ReturnsAsync(user).Verifiable();
+        
+        //Act
+        var result = await _service.GetById(user.Id);
+        //Assert
+        result.Should().NotBeNull();
+        result.Id.Should().Be(user.Id);
+        result.Name.Should().Be(user.Name);
+        result.Email.Should().Be(user.Email);
+        result.RolePermission.Should().Be(UserRolePermission.Operator);
+        result.Status.Should().Be(UserStatus.Enabled);
+        _userRepositoryMock.Verify(x => x.GetById(user.Id), Times.Once);
+    }
+    #endregion
     
+    #region GetByEmail
+
+    [Fact]
+    public async Task GivenValidEmail_WhenGetByEmail_ThenShouldReturnUser()
+    {
+        //Arrange
+       
+        var user = new User("John", "john@old.com", "hash", UserRolePermission.Operator, UserStatus.Enabled);
+        _userRepositoryMock.Setup(x => x.GetByEmail(user.Email)).ReturnsAsync(user).Verifiable();
+        
+        //Act
+        var result = await _service.GetByEmail(user.Email);
+        //Assert
+        result.Should().NotBeNull();
+        result.Id.Should().Be(user.Id);
+        result.Name.Should().Be(user.Name);
+        result.Email.Should().Be(user.Email);
+        result.RolePermission.Should().Be(UserRolePermission.Operator);
+        result.Status.Should().Be(UserStatus.Enabled);
+        _userRepositoryMock.Verify(x => x.GetByEmail(user.Email), Times.Once);
+    }
+    #endregion
 }

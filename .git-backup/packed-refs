@@ -1,0 +1,8 @@
+# pack-refs with: peeled fully-peeled sorted 
+66ce7b3682ec03cef7b9a530f2b2c7ebdf736186 refs/remotes/origin/feat-domain-entity
+58f52face75a237afb44aed745e906befa8baba9 refs/remotes/origin/feat-fluent-api-ef-core
+71b3d18bdd29b2b42292893f4b3af0b8b623f8db refs/remotes/origin/feat-interface-stubs
+c3e957858d3bb85835d1e4f9225accf696195fd6 refs/remotes/origin/feat-unit-tests
+05c5bc4140ddea6687e138024b49e8bc6771e842 refs/remotes/origin/feat-user-routes
+1c171eff86caae03a34c14dab395f8c562623ddd refs/remotes/origin/feat-user-validate
+1118864819bd85870c38c864e146a863db2d1c6b refs/remotes/origin/main
