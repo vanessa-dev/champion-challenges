@@ -1,4 +1,4 @@
-using ChampionChallenges.Api.Filters;
+using ChampionChallenges.Api.Middlewares;
 using ChampionChallenges.Application.DTOs.User;
 using ChampionChallenges.Application.Interfaces.Services;
 using ChampionChallenges.Application.Services;
@@ -12,10 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add<DomainExceptionFilter>();
-});
+builder.Services.AddControllers();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -34,6 +31,8 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddFluentValidationAutoValidation()
     .AddValidatorsFromAssemblyContaining<UpdatePasswordDto>();
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
