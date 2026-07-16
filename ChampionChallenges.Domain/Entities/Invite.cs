@@ -2,16 +2,17 @@ using ChampionChallenges.Domain.Enums;
 
 namespace ChampionChallenges.Domain.Entities;
 
-public class Invite(Guid challengerId, Guid challengedId) : BaseEntity
+public class Invite(Guid challengerId, Guid challengedId, Guid challengeId) : BaseEntity
 {
     public Guid ChallengerId { get; private set; } = challengerId;
     public Guid ChallengedId { get; private set; } = challengedId;
+    public Guid ChallengeId { get; private set; } = challengeId;
    
     public DateTime InvitedAt { get; private set; } = DateTime.UtcNow;
     public DateTime? RespondedAt { get; private set; }
     public InviteStatus Status { get; private set; } = InviteStatus.Pending;
-    public Challenge Challenge { get; private set; }
-    public User Challenged { get; private set; }
+    public Challenge Challenge { get; private set; } = null!;
+    public User Challenged { get; private set; } = null!;
 
     public void Accept() =>
         (Status, RespondedAt) = (InviteStatus.Accepted, DateTime.UtcNow);

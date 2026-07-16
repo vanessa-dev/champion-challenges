@@ -5,10 +5,12 @@ namespace ChampionChallenges.Application.Mappers;
 
 public static class InviteMapper
 {
+    // TODO: Update this mapper when implementing Invite endpoints
+    // The Invite entity now requires ChallengeId in the constructor
     //Converter para entidade
-    public static Invite ToEntity(this SendInviteDto dto)
+    public static Invite ToEntity(this SendInviteDto dto, Guid challengeId)
     {
-        return new Invite(dto.ChallengerId, dto.ChallengedId);
+        return new Invite(dto.ChallengerId, dto.ChallengedId, challengeId);
     }
     
     //Converter para DTO

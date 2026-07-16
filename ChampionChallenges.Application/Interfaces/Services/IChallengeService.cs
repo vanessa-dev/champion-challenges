@@ -6,9 +6,9 @@ namespace ChampionChallenges.Application.Interfaces.Services;
 public interface IChallengeService 
 {
     public Task<ChallengeResponseDto> Add(CreateChallengeDto entity);
-    public Task<ChallengeResponseDto> Update(CreateChallengeDto entity);
+    public Task<ChallengeResponseDto> Update(UpdateChallengeDto entity);
     public Task Remove(Guid id);
     
-    public Task<IList<ChallengeResponseDto>> GetAll();
+    public Task<IList<ChallengeResponseDto>> GetAll(Guid? ownerId = null, Guid? invitedUserId = null);
     public Task<ChallengeResponseDto?> GetById(Guid id);
 }

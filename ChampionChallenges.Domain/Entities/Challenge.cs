@@ -1,4 +1,6 @@
 using ChampionChallenges.Domain.Enums;
+using ChampionChallenges.Domain.Validators;
+using FluentValidation;
 
 namespace ChampionChallenges.Domain.Entities;
 
@@ -12,14 +14,28 @@ public class Challenge(string name, string details, string link, Guid userId, Da
     public string Link { get; private set; } = link;
     public Guid UserId { get; private set; } = userId;
     
-    public  User Challenger { get; private set; }
+    public User Challenger { get; private set; } = null!;
     public ICollection<Invite> Invites { get; private set; } = [];
 
-    public Invite Invite(Guid challengedId) => new (Id, challengedId);
+    public Invite Invite(Guid challengedId) => new (UserId, challengedId, Id);
 
+    public void UpdateData(string name, string details, string link, DateTime? endDate, ChallengeStatus status)
+    {
+        Name = name;
+        Details = details;
+        Link = link;
+        EndDate = endDate;
+        Status = status;
+    }
 
     public override bool Validate()
     {
-        throw new NotImplementedException();
+        var validator = new ChallengeValidator();
+        var result = validator.Validate(this);
+        
+        if (!result.IsValid)
+            throw new ValidationException(result.Errors);
+        
+        return true;
     }
 }
